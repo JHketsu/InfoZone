@@ -1,0 +1,357 @@
+卷 DATA 的文件夹 PATH 列表
+卷序列号为 9405-D92C
+D:.
+│  tree.txt
+│  
+├─web前端测试
+│  ├─web代码测试
+│  │  │  web前端静态测试.doc
+│  │  │  
+│  │  ├─单元测试和覆盖度测试
+│  │  │  └─timelinunit
+│  │  │      │  timelinunit.iml
+│  │  │      │  
+│  │  │      ├─.idea
+│  │  │      │      encodings.xml
+│  │  │      │      misc.xml
+│  │  │      │      modules.xml
+│  │  │      │      workspace.xml
+│  │  │      │      
+│  │  │      ├─code
+│  │  │      │  │  jquery.js
+│  │  │      │  │  qunitTest.html
+│  │  │      │  │  
+│  │  │      │  ├─js
+│  │  │      │  │      compute.js
+│  │  │      │  │      load.js
+│  │  │      │  │      
+│  │  │      │  ├─qunit
+│  │  │      │  │      qunit.css
+│  │  │      │  │      qunit.js
+│  │  │      │  │      
+│  │  │      │  └─testjs
+│  │  │      │          compute.test.js
+│  │  │      │          load.test.js
+│  │  │      │          
+│  │  │      ├─data
+│  │  │      │      test-ajax-data-login.html
+│  │  │      │      
+│  │  │      └─jsCoverage
+│  │  │          │  jquery.js
+│  │  │          │  jscoverage-highlight.css
+│  │  │          │  jscoverage-ie.css
+│  │  │          │  jscoverage-throbber.gif
+│  │  │          │  jscoverage.css
+│  │  │          │  jscoverage.html
+│  │  │          │  jscoverage.js
+│  │  │          │  qunitTest.html
+│  │  │          │  
+│  │  │          ├─js
+│  │  │          │      compute.js
+│  │  │          │      load.js
+│  │  │          │      login.js
+│  │  │          │      
+│  │  │          ├─qunit
+│  │  │          │      qunit.css
+│  │  │          │      qunit.js
+│  │  │          │      
+│  │  │          └─testjs
+│  │  │                  compute.test.js
+│  │  │                  load.test.js
+│  │  │                  
+│  │  └─静态测试
+│  ├─web前端性能测试
+│  │      web性能测试.doc
+│  │      
+│  └─web功能测试
+│      │  web功能测试报告.doc
+│      │  web系统测试计划.xlsx
+│      │  
+│      └─功能测试代码
+│              LoginHp.java
+│              LoginWrongPW.java
+│              PushHp.java
+│              RegisterHp.java
+│              
+├─后端代码测试
+│  ├─单元测试
+│  │  │  单元测试报告.doc
+│  │  │  
+│  │  └─覆盖度测试报告
+│  │      │  index.html
+│  │      │  jacoco-sessions.html
+│  │      │  
+│  │      ├─jacoco-resources
+│  │      │      branchfc.gif
+│  │      │      branchnc.gif
+│  │      │      branchpc.gif
+│  │      │      bundle.gif
+│  │      │      class.gif
+│  │      │      down.gif
+│  │      │      greenbar.gif
+│  │      │      group.gif
+│  │      │      method.gif
+│  │      │      package.gif
+│  │      │      prettify.css
+│  │      │      prettify.js
+│  │      │      redbar.gif
+│  │      │      report.css
+│  │      │      report.gif
+│  │      │      session.gif
+│  │      │      sort.gif
+│  │      │      sort.js
+│  │      │      source.gif
+│  │      │      up.gif
+│  │      │      
+│  │      └─Timeline
+│  │          │  index.html
+│  │          │  
+│  │          ├─src_main_java
+│  │          │  │  index.html
+│  │          │  │  
+│  │          │  ├─com.example.controller
+│  │          │  │      ArticleController.html
+│  │          │  │      ArticleController.java.html
+│  │          │  │      index.html
+│  │          │  │      index.source.html
+│  │          │  │      UserController.html
+│  │          │  │      UserController.java.html
+│  │          │  │      
+│  │          │  └─model
+│  │          │          Article.html
+│  │          │          Article.java.html
+│  │          │          ArticleMessage.html
+│  │          │          ArticleMessage.java.html
+│  │          │          FileOperator.html
+│  │          │          FileOperator.java.html
+│  │          │          index.html
+│  │          │          index.source.html
+│  │          │          NormalMessage.html
+│  │          │          NormalMessage.java.html
+│  │          │          NormalMessage2.html
+│  │          │          NormalMessage2.java.html
+│  │          │          RemoteDBUnit.html
+│  │          │          RemoteDBUnit.java.html
+│  │          │          User.html
+│  │          │          User.java.html
+│  │          │          
+│  │          └─src_test_java
+│  │              │  index.html
+│  │              │  
+│  │              └─com.example.controller
+│  │                      ArticleControllerTest.html
+│  │                      ArticleControllerTest.java.html
+│  │                      index.html
+│  │                      index.source.html
+│  │                      UserControllerTest.html
+│  │                      UserControllerTest.java.html
+│  │                      
+│  ├─接口测试
+│  │  │  接口测试报告.doc
+│  │  │  
+│  │  └─附件
+│  │          postman-result.png
+│  │          Timeline.postman_collection.json
+│  │          Timeline.postman_test_run.json
+│  │          接口测试用例及执行情况.xlsx
+│  │          接口测试缺陷报告.doc
+│  │          
+│  └─静态测试
+│          findbugs-result-Timeline-1.0.html
+│          findbugs-result-Timeline-2.0.html
+│          静态测试报告.doc
+│          
+├─安卓测试
+│  ├─单元测试报告
+│  │      Test Results - SuiteTest.html
+│  │      
+│  ├─安卓端系统测试
+│  │      安卓端系统测试报告.doc
+│  │      安卓端系统测试计划.xlsx
+│  │      
+│  ├─自动化脚本测试报告
+│  │  │  Test Results - loginWrongPassword().html
+│  │  │  Test Results - SuiteInstrumentedTest.html
+│  │  │  
+│  │  └─connected
+│  │      │  com.timeline.android.ArticleActivityInstrumentedTest.html
+│  │      │  com.timeline.android.ExampleInstrumentedTest.html
+│  │      │  com.timeline.android.html
+│  │      │  com.timeline.android.LoginActivityInstrumentedTest.html
+│  │      │  com.timeline.android.MainActivityInstrumentedTest.html
+│  │      │  com.timeline.android.PushActivityInstrumentedTest.html
+│  │      │  com.timeline.android.RegisterActivityInstrumentedTest.html
+│  │      │  index.html
+│  │      │  
+│  │      ├─css
+│  │      │      base-style.css
+│  │      │      style.css
+│  │      │      
+│  │      └─js
+│  │              report.js
+│  │              
+│  ├─覆盖度报告
+│  │  │  index.html
+│  │  │  index_SORT_BY_BLOCK.html
+│  │  │  index_SORT_BY_BLOCK_DESC.html
+│  │  │  index_SORT_BY_CLASS.html
+│  │  │  index_SORT_BY_CLASS_DESC.html
+│  │  │  index_SORT_BY_LINE.html
+│  │  │  index_SORT_BY_LINE_DESC.html
+│  │  │  index_SORT_BY_METHOD.html
+│  │  │  index_SORT_BY_METHOD_DESC.html
+│  │  │  index_SORT_BY_NAME_DESC.html
+│  │  │  
+│  │  ├─.css
+│  │  │      coverage.css
+│  │  │      
+│  │  ├─.img
+│  │  │      arrowDown.gif
+│  │  │      arrowUp.gif
+│  │  │      
+│  │  ├─com.timeline.android
+│  │  │  │  index.html
+│  │  │  │  index_SORT_BY_BLOCK.html
+│  │  │  │  index_SORT_BY_BLOCK_DESC.html
+│  │  │  │  index_SORT_BY_CLASS.html
+│  │  │  │  index_SORT_BY_CLASS_DESC.html
+│  │  │  │  index_SORT_BY_LINE.html
+│  │  │  │  index_SORT_BY_LINE_DESC.html
+│  │  │  │  index_SORT_BY_METHOD.html
+│  │  │  │  index_SORT_BY_METHOD_DESC.html
+│  │  │  │  index_SORT_BY_NAME_DESC.html
+│  │  │  │  
+│  │  │  └─.classes
+│  │  │          ArticleActivity.html
+│  │  │          ArticleAdapter.html
+│  │  │          BuildConfig.html
+│  │  │          LoginActivity.html
+│  │  │          MainActivity.html
+│  │  │          PushActivity.html
+│  │  │          R.html
+│  │  │          RegisterActivity.html
+│  │  │          
+│  │  ├─com.timeline.android.dagger2
+│  │  │  │  index.html
+│  │  │  │  index_SORT_BY_BLOCK.html
+│  │  │  │  index_SORT_BY_BLOCK_DESC.html
+│  │  │  │  index_SORT_BY_CLASS.html
+│  │  │  │  index_SORT_BY_CLASS_DESC.html
+│  │  │  │  index_SORT_BY_LINE.html
+│  │  │  │  index_SORT_BY_LINE_DESC.html
+│  │  │  │  index_SORT_BY_METHOD.html
+│  │  │  │  index_SORT_BY_METHOD_DESC.html
+│  │  │  │  index_SORT_BY_NAME_DESC.html
+│  │  │  │  
+│  │  │  └─.classes
+│  │  │          DaggerMyComponent.html
+│  │  │          MyComponent.html
+│  │  │          MyModule.html
+│  │  │          MyModule_ProvideArticlePresenterFactory.html
+│  │  │          MyModule_ProvideCheckUtilFactory.html
+│  │  │          MyModule_ProvideContextFactory.html
+│  │  │          MyModule_ProvideLoginPresenterFactory.html
+│  │  │          MyModule_ProvidePushPresenterFactory.html
+│  │  │          MyModule_ProvideRegisterPresenterFactory.html
+│  │  │          MyModule_ProvideSharedPreferencesFactory.html
+│  │  │          
+│  │  ├─com.timeline.android.db
+│  │  │  │  index.html
+│  │  │  │  index_SORT_BY_BLOCK.html
+│  │  │  │  index_SORT_BY_BLOCK_DESC.html
+│  │  │  │  index_SORT_BY_CLASS.html
+│  │  │  │  index_SORT_BY_CLASS_DESC.html
+│  │  │  │  index_SORT_BY_LINE.html
+│  │  │  │  index_SORT_BY_LINE_DESC.html
+│  │  │  │  index_SORT_BY_METHOD.html
+│  │  │  │  index_SORT_BY_METHOD_DESC.html
+│  │  │  │  index_SORT_BY_NAME_DESC.html
+│  │  │  │  
+│  │  │  └─.classes
+│  │  │          Article.html
+│  │  │          User.html
+│  │  │          
+│  │  ├─com.timeline.android.presenter
+│  │  │  │  index.html
+│  │  │  │  index_SORT_BY_BLOCK.html
+│  │  │  │  index_SORT_BY_BLOCK_DESC.html
+│  │  │  │  index_SORT_BY_CLASS.html
+│  │  │  │  index_SORT_BY_CLASS_DESC.html
+│  │  │  │  index_SORT_BY_LINE.html
+│  │  │  │  index_SORT_BY_LINE_DESC.html
+│  │  │  │  index_SORT_BY_METHOD.html
+│  │  │  │  index_SORT_BY_METHOD_DESC.html
+│  │  │  │  index_SORT_BY_NAME_DESC.html
+│  │  │  │  
+│  │  │  └─.classes
+│  │  │          ArticlePresenter.html
+│  │  │          LoginPresenter.html
+│  │  │          MainPresenter.html
+│  │  │          PushPresenter.html
+│  │  │          RegisterPresenter.html
+│  │  │          
+│  │  └─com.timeline.android.util
+│  │      │  index.html
+│  │      │  index_SORT_BY_BLOCK.html
+│  │      │  index_SORT_BY_BLOCK_DESC.html
+│  │      │  index_SORT_BY_CLASS.html
+│  │      │  index_SORT_BY_CLASS_DESC.html
+│  │      │  index_SORT_BY_LINE.html
+│  │      │  index_SORT_BY_LINE_DESC.html
+│  │      │  index_SORT_BY_METHOD.html
+│  │      │  index_SORT_BY_METHOD_DESC.html
+│  │      │  index_SORT_BY_NAME_DESC.html
+│  │      │  
+│  │      └─.classes
+│  │              CheckUtil.html
+│  │              HttpUtil.html
+│  │              LogUtil.html
+│  │              MyApplication.html
+│  │              Utility.html
+│  │              
+│  └─静态报告
+│          .descriptions.xml
+│          AndroidDomInspection.xml
+│          AndroidLintAllowBackup.xml
+│          AndroidLintAlwaysShowAction.xml
+│          AndroidLintAutofill.xml
+│          AndroidLintContentDescription.xml
+│          AndroidLintGoogleAppIndexingWarning.xml
+│          AndroidLintHardcodedText.xml
+│          AndroidLintIconLocation.xml
+│          AndroidLintLabelFor.xml
+│          AndroidLintOldTargetApi.xml
+│          AndroidLintOverdraw.xml
+│          AndroidLintRtlHardcoded.xml
+│          AndroidLintStaticFieldLeak.xml
+│          AndroidLintTextFields.xml
+│          AndroidLintUnusedAttribute.xml
+│          AndroidLintUnusedResources.xml
+│          CanBeFinal.xml
+│          CheckValidXmlInScriptTagBody.xml
+│          ConstantConditions.xml
+│          DefaultAnnotationParam.xml
+│          EmptyMethod.xml
+│          FieldCanBeLocal.xml
+│          HtmlUnknownTag.xml
+│          IgnoreResultOfCall.xml
+│          JavaDoc.xml
+│          LossyEncoding.xml
+│          NullableProblems.xml
+│          RedundantCast.xml
+│          RedundantStringOperation.xml
+│          RedundantThrows.xml
+│          SimplifiableJUnitAssertion.xml
+│          SpellCheckingInspection.xml
+│          TrivialIf.xml
+│          unused.xml
+│          UnusedAssignment.xml
+│          UNUSED_IMPORT.xml
+│          WeakerAccess.xml
+│          XmlUnusedNamespaceDeclaration.xml
+│          
+└─性能测试
+        Report.pdf
+        性能测试场景.docx
+        性能测试报告.docx
+        

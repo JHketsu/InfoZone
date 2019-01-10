@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RemoteDBUnit.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">com.example.controller (2019-1-6 23:40:08)</a> &gt; <a href="../../index.html" class="el_group">Timeline</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">RemoteDBUnit.java</span></div><h1>RemoteDBUnit.java</h1><pre class="source lang-java linenums">package model;
+
+import java.sql.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+<span class="fc" id="L9">public class RemoteDBUnit{</span>
+    public static final String user = &quot;root&quot;;
+    public static final String password = &quot;tmt980122&quot;;
+
+//        //local
+//    public final static String url = &quot;jdbc:mysql://129.204.74.128:3306/timeline?useUnicode=true&amp;amp&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;;
+//    public static String hostPath=&quot;/img/&quot;;
+//    public final static String hostUrl=&quot;http://localhost:8080/timeline/img/&quot;;
+////
+////    web
+    public final static String url = &quot;jdbc:mysql://localhost:3306/timeline?useUnicode=true&amp;amp&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;&quot;;
+<span class="fc" id="L20">    public static String hostPath=&quot;/home/ubuntu/apache-tomcat-8.5.35/webapps/timeline/img/&quot;;</span>
+<span class="fc" id="L21">    public static String hostUrl=&quot;http://129.204.74.128:8080/timeline/img/&quot;;</span>
+
+
+    //SingleTon
+//    private static RemoteDBUnit dbUnit = null;
+
+//    public static RemoteDBUnit getDBUnit() {
+//        if (dbUnit == null) dbUnit = new RemoteDBUnit();
+//        return dbUnit;
+//    }
+
+    //默认构造函数
+//    private RemoteDBUnit() {
+//        try {
+//            //加载驱动
+//            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public Connection getConnection() {
+//        try {
+//            return DriverManager.getConnection(url, user, password);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
+    public  Connection createConnection() {
+        try {
+            //加载驱动
+<span class="nc" id="L55">            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
+<span class="nc" id="L56">        } catch (Exception e) {</span>
+<span class="nc" id="L57">            e.printStackTrace();</span>
+        }
+        try {
+<span class="nc" id="L60">            return DriverManager.getConnection(url, user, password);</span>
+<span class="nc" id="L61">        } catch (SQLException e2) {</span>
+<span class="nc" id="L62">            e2.printStackTrace();</span>
+<span class="nc" id="L63">            return null;</span>
+        }
+    }
+
+
+    public static void closeDBResource(Connection con,PreparedStatement pstm,ResultSet rs)
+    {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if(rs!=null) {</span>
+            try {
+<span class="nc" id="L72">                rs.close();</span>
+<span class="nc" id="L73">            } catch (SQLException e) {</span>
+<span class="nc" id="L74">                e.printStackTrace();</span>
+            }
+        }
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(pstm!=null) {</span>
+            try {
+<span class="nc" id="L79">                pstm.close();</span>
+<span class="nc" id="L80">            } catch (SQLException e) {</span>
+<span class="nc" id="L81">                e.printStackTrace();</span>
+            }
+        }
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if(con!=null) {</span>
+            try {
+<span class="nc" id="L86">                con.close();</span>
+<span class="nc" id="L87">            } catch (SQLException e) {</span>
+<span class="nc" id="L88">                e.printStackTrace();</span>
+            }
+        }
+<span class="nc" id="L91">    }</span>
+
+    public boolean userIDinUser(String userID) {
+<span class="nc" id="L94">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L95">        ResultSet rs = null;</span>
+<span class="nc" id="L96">        Connection con = createConnection();</span>
+
+<span class="nc" id="L98">        String sql = &quot;select userID from user where userID=?&quot;;</span>
+
+<span class="nc" id="L100">        boolean flg = false;</span>
+        try {
+<span class="nc" id="L102">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L103">            pstm.setString(1, userID);</span>
+<span class="nc" id="L104">            rs = pstm.executeQuery();</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L107">                flg = true;</span>
+                break;
+            }
+<span class="nc" id="L110">        } catch (SQLException e) {</span>
+<span class="nc" id="L111">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L113">            RemoteDBUnit.closeDBResource(con,pstm,rs);</span>
+        }
+<span class="nc" id="L115">        return flg;</span>
+    }
+
+
+    public boolean articleIDinArticle(int articleID){
+<span class="nc" id="L120">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L121">        ResultSet rs = null;</span>
+<span class="nc" id="L122">        Connection con = createConnection();</span>
+
+<span class="nc" id="L124">        String sql = &quot;select articleID from article where articleID=?&quot;;</span>
+
+<span class="nc" id="L126">        boolean flg = false;</span>
+        try {
+<span class="nc" id="L128">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L129">            pstm.setInt(1, articleID);</span>
+<span class="nc" id="L130">            rs = pstm.executeQuery();</span>
+
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L133">                flg = true;</span>
+                break;
+            }
+<span class="nc" id="L136">        } catch (SQLException e) {</span>
+<span class="nc" id="L137">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L139">            RemoteDBUnit.closeDBResource(con,pstm,rs);</span>
+        }
+<span class="nc" id="L141">        return flg;</span>
+    }
+
+
+    public boolean insertUser(String userID,String nickname,String password) {
+<span class="nc" id="L146">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L147">        ResultSet rs = null;</span>
+<span class="nc" id="L148">        Connection con = createConnection();</span>
+
+<span class="nc" id="L150">        boolean flg=userIDinUser(userID);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if(flg==true)return false;</span>
+
+        try {
+<span class="nc" id="L154">            String sql = &quot;insert into user(userID,nickname,password) values (?,?,?)&quot;;</span>
+<span class="nc" id="L155">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L156">            pstm.setString(1, userID);</span>
+<span class="nc" id="L157">            pstm.setString(2, nickname);</span>
+<span class="nc" id="L158">            pstm.setString(3, password);</span>
+<span class="nc" id="L159">            pstm.executeUpdate();</span>
+<span class="nc" id="L160">            return true;</span>
+
+<span class="nc" id="L162">        } catch (SQLException e) {</span>
+<span class="nc" id="L163">            e.printStackTrace();</span>
+<span class="nc" id="L164">            return false;</span>
+        } finally {
+<span class="nc" id="L166">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+    }
+
+    public boolean matchPassword(String userID,String password) {
+<span class="nc" id="L171">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L172">        ResultSet rs = null;</span>
+<span class="nc" id="L173">        Connection con = createConnection();</span>
+
+        try {
+<span class="nc" id="L176">            String sql = &quot;select password,nickname from user where userID=?&quot;;</span>
+<span class="nc" id="L177">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L178">            pstm.setString(1, userID);</span>
+<span class="nc" id="L179">            rs = pstm.executeQuery();</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                if (password.equals(rs.getString(&quot;password&quot;))) {</span>
+<span class="nc" id="L182">                    return true;</span>
+                }
+            }
+<span class="nc" id="L185">        } catch (SQLException e) {</span>
+<span class="nc" id="L186">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L188">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+<span class="nc" id="L190">        return false;</span>
+    }
+
+    public String getNickname(String userID) {
+<span class="nc" id="L194">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L195">        ResultSet rs = null;</span>
+<span class="nc" id="L196">        Connection con = createConnection();</span>
+
+        try {
+<span class="nc" id="L199">            String sql = &quot;select nickname from user where userID=?&quot;;</span>
+<span class="nc" id="L200">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L201">            pstm.setString(1, userID);</span>
+<span class="nc" id="L202">            rs = pstm.executeQuery();</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L204">                return rs.getString(&quot;nickname&quot;);</span>
+            }
+<span class="nc" id="L206">        } catch (SQLException e) {</span>
+<span class="nc" id="L207">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L209">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+<span class="nc" id="L211">        return null;</span>
+    }
+
+    public boolean insertArticle(String userID,String content,String imageURL) {
+<span class="nc" id="L215">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L216">        ResultSet rs = null;</span>
+<span class="nc" id="L217">        Connection con = createConnection();</span>
+
+<span class="nc" id="L219">        String nickname=getNickname(userID);</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        if(nickname==null)return false;</span>
+
+        try {
+<span class="nc" id="L223">            String sql = &quot;insert into article(userID,content,imageURL,nickname) values (?,?,?,?)&quot;;</span>
+<span class="nc" id="L224">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L225">            pstm.setString(1, userID);</span>
+<span class="nc" id="L226">            pstm.setString(2, content);</span>
+<span class="nc" id="L227">            pstm.setString(3, imageURL);</span>
+<span class="nc" id="L228">            pstm.setString(4, nickname);</span>
+<span class="nc" id="L229">            pstm.executeUpdate();</span>
+<span class="nc" id="L230">            return true;</span>
+<span class="nc" id="L231">        } catch (SQLException e) {</span>
+<span class="nc" id="L232">            e.printStackTrace();</span>
+<span class="nc" id="L233">            return false;</span>
+        } finally {
+<span class="nc" id="L235">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+    }
+
+    public ArrayList&lt;Article&gt; currentArticles(int front, int num){
+<span class="nc" id="L240">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L241">        ResultSet rs = null;</span>
+<span class="nc" id="L242">        Connection con = createConnection();</span>
+<span class="nc" id="L243">        ArrayList&lt;Article&gt; articles=new ArrayList&lt;Article&gt;();</span>
+
+        try {
+<span class="nc" id="L246">            String sql = &quot;select * from article where articleID &gt; ? order by articleID DESC&quot;;</span>
+<span class="nc" id="L247">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L248">            pstm.setInt(1, front);</span>
+<span class="nc" id="L249">            rs = pstm.executeQuery();</span>
+<span class="nc" id="L250">            int count = 0;</span>
+<span class="nc bnc" id="L251" title="All 4 branches missed.">            while (rs.next() &amp;&amp; (num-- != 0)) {</span>
+<span class="nc" id="L252">                Article article = new Article();</span>
+<span class="nc" id="L253">                count++;</span>
+<span class="nc" id="L254">                article.setArticleID(rs.getString(&quot;articleID&quot;));</span>
+<span class="nc" id="L255">                article.setUserID(rs.getString(&quot;userID&quot;));</span>
+<span class="nc" id="L256">                article.setContent(rs.getString(&quot;content&quot;));</span>
+<span class="nc" id="L257">                article.setImageURL(rs.getString(&quot;imageURL&quot;));</span>
+<span class="nc" id="L258">                article.setNickname(rs.getString(&quot;nickname&quot;));</span>
+<span class="nc" id="L259">                article.setTimeStamp(getTimeDif(rs.getTimestamp(&quot;time&quot;).toLocalDateTime()));</span>
+<span class="nc" id="L260">                articles.add(article);</span>
+            }
+<span class="nc" id="L262">            return articles;</span>
+<span class="nc" id="L263">        } catch (SQLException e) {</span>
+<span class="nc" id="L264">            e.printStackTrace();</span>
+<span class="nc" id="L265">            return null;</span>
+        } finally {
+<span class="nc" id="L267">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+    }
+
+    public ArrayList&lt;Article&gt; previousArticles(int tail,int num){
+<span class="nc" id="L272">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L273">        ResultSet rs = null;</span>
+<span class="nc" id="L274">        Connection con = createConnection();</span>
+<span class="nc" id="L275">        ArrayList&lt;Article&gt; articles=new ArrayList&lt;Article&gt;();</span>
+
+        try {
+<span class="nc" id="L278">            String sql = &quot;select * from article where articleID &lt; ? order by articleID DESC&quot;;</span>
+<span class="nc" id="L279">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L280">            pstm.setInt(1, tail);</span>
+<span class="nc" id="L281">            rs = pstm.executeQuery();</span>
+<span class="nc" id="L282">            int count = 0;</span>
+<span class="nc bnc" id="L283" title="All 4 branches missed.">            while (rs.next() &amp;&amp; (num-- != 0)) {</span>
+<span class="nc" id="L284">                Article article = new Article();</span>
+<span class="nc" id="L285">                count++;</span>
+<span class="nc" id="L286">                article.setArticleID(rs.getString(&quot;articleID&quot;));</span>
+<span class="nc" id="L287">                article.setUserID(rs.getString(&quot;userID&quot;));</span>
+<span class="nc" id="L288">                article.setContent(rs.getString(&quot;content&quot;));</span>
+<span class="nc" id="L289">                article.setImageURL(rs.getString(&quot;imageURL&quot;));</span>
+<span class="nc" id="L290">                article.setNickname(rs.getString(&quot;nickname&quot;));</span>
+<span class="nc" id="L291">                article.setTimeStamp(getTimeDif(rs.getTimestamp(&quot;time&quot;).toLocalDateTime()));</span>
+<span class="nc" id="L292">                articles.add(article);</span>
+            }
+<span class="nc" id="L294">            return articles;</span>
+<span class="nc" id="L295">        } catch (SQLException e) {</span>
+<span class="nc" id="L296">            e.printStackTrace();</span>
+<span class="nc" id="L297">            return null;</span>
+        } finally {
+<span class="nc" id="L299">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+    }
+
+    public String getImageUrl(int articleID) {
+<span class="nc" id="L304">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L305">        ResultSet rs = null;</span>
+<span class="nc" id="L306">        Connection con = createConnection();</span>
+
+<span class="nc" id="L308">        boolean flag = articleIDinArticle(articleID);</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        if (flag == false) return null;</span>
+
+        try {
+<span class="nc" id="L312">            String sql = &quot;select * from article where articleID = ? &quot;;</span>
+<span class="nc" id="L313">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L314">            pstm.setInt(1, articleID);</span>
+<span class="nc" id="L315">            rs = pstm.executeQuery();</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L317">                return rs.getString(&quot;imageURL&quot;);</span>
+            }
+<span class="nc" id="L319">        } catch (SQLException e) {</span>
+<span class="nc" id="L320">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L322">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+<span class="nc" id="L324">        return null;</span>
+    }
+
+    public boolean deleteArticle(int articleID){
+<span class="nc" id="L328">        PreparedStatement pstm = null;</span>
+<span class="nc" id="L329">        ResultSet rs = null;</span>
+<span class="nc" id="L330">        Connection con = createConnection();</span>
+
+<span class="nc" id="L332">        boolean flag=articleIDinArticle(articleID);</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">        if(flag==false)return false;</span>
+
+        try {
+<span class="nc" id="L336">            String sql = &quot;delete from article where articleID = ? &quot;;</span>
+<span class="nc" id="L337">            pstm = con.prepareStatement(sql);</span>
+<span class="nc" id="L338">            pstm.setInt(1, articleID);</span>
+<span class="nc" id="L339">            pstm.executeUpdate();</span>
+<span class="nc" id="L340">            return true;</span>
+<span class="nc" id="L341">        } catch (SQLException e) {</span>
+<span class="nc" id="L342">            e.printStackTrace();</span>
+<span class="nc" id="L343">            return false;</span>
+        } finally {
+<span class="nc" id="L345">            RemoteDBUnit.closeDBResource(con, pstm, rs);</span>
+        }
+    }
+
+
+
+
+    public static String getTimeDif(LocalDateTime past) {
+<span class="nc" id="L353">        LocalDateTime now = LocalDateTime.now();</span>
+<span class="nc" id="L354">        past = past.minusHours(14);</span>
+<span class="nc" id="L355">        Duration duration = Duration.between(past, now);</span>
+<span class="nc" id="L356">        long min = duration.toMinutes();</span>
+<span class="nc" id="L357">        long hour = duration.toHours();</span>
+<span class="nc" id="L358">        long day = duration.toDays();</span>
+
+<span class="nc" id="L360">        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern(&quot;yyyy年M月d日&quot;);</span>
+<span class="nc" id="L361">        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(&quot;M月d日H时&quot;);</span>
+<span class="nc" id="L362">        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;);</span>
+
+<span class="nc bnc" id="L364" title="All 2 branches missed.">        if (past.getYear() != now.getYear()) {</span>
+<span class="nc" id="L365">            return dtf1.format(past);</span>
+        }
+<span class="nc bnc" id="L367" title="All 4 branches missed.">        else if (past.getMonth() != now.getMonth()||day&gt;1) {</span>
+<span class="nc" id="L368">            return dtf2.format(past);</span>
+        }
+<span class="nc bnc" id="L370" title="All 2 branches missed.">        else if (day == 1) {</span>
+<span class="nc" id="L371">            return &quot;昨天 &quot; + dtf3.format(past);</span>
+        }
+<span class="nc bnc" id="L373" title="All 2 branches missed.">        else if (hour &gt;= 1) {</span>
+<span class="nc" id="L374">            return hour + &quot;&quot; + &quot;小时前&quot;;</span>
+        }
+<span class="nc bnc" id="L376" title="All 2 branches missed.">        else if (min &gt; 0) {</span>
+<span class="nc" id="L377">            return min + &quot;&quot; + &quot;分钟前&quot;;</span>
+        }
+<span class="nc" id="L379">        else return &quot;刚刚&quot;;</span>
+    }
+
+
+}
+
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>com.example.controller (2019-1-6 23:40:08)</div></body></html>

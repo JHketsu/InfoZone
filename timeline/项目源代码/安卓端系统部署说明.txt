@@ -1,0 +1,21 @@
+安卓端系统部署说明
+
+安卓端源码位于
+https://github.com/lyx937131777/Timeline
+
+下载后可以用Android Studio 直接import（需要安装SDK27）
+然后可以在Android Studio内的模拟器运行
+也可以用USB连接安卓手机，利用Android Studio安装到手机上运行
+或者将Timeline/Apk文件夹内的文件发送到手机上也可以安装
+初次运行时会有部分权限申请，需要通过权限申请才能正常使用
+
+开发代码位于Timeline/app/src/main中，java内为java代码，res内为资源。
+
+测试代码分为单元测试和自动化脚本测试
+
+单元测试代码位于Timeline/app/src/test中，为Junit4+Robolectric框架
+自动化测试脚本位于Timeline/app/src/AndroidTest中，为AndroidJunit4+Espresso框架
+
+测试代码均需在Android Studio运行
+单元测试可直接运行test/java/com/timeline/android/SuiteTest
+自动化测试脚本需连接手机或用模拟器运行，直接运行AndroidTest/java/com/timeline/android/SuiteInstrumentedTest

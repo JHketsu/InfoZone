@@ -1,0 +1,115 @@
+#myFrame{
+    position: absolute;
+    margin: 2% 15% 15% 15%;
+}
+#myFrame header {
+    background-color:#303F9F;
+    color: #fff;
+    text-align:center;
+    padding:5px;
+}
+/*发布按钮设置*/
+.btn1 {
+    background-color: #303F9F;
+    border: none;
+    color: white;
+}
+/*加载更多按钮设置*/
+.add-more button{
+    background-color: #303F9F;
+    border: none;
+    color: white;
+}
+/*文件图片上传设置*/
+.file {
+    position: relative;
+    display: inline-block;
+    background: #303F9F;
+    border: 1px solid #525b96;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: white;
+    border-color: #525b96;
+    color: #303F9F;
+    text-decoration: none;
+}
+
+/* 状态DIV设置 */
+.stateShow{
+    height:auto;
+    padding-top:5px;
+    border-bottom-style: outset;
+    border-top-style: outset;
+    padding-bottom:5px;
+}
+
+/* 状态展示中的头像设置 */
+.img{
+    margin-top:3px;
+    border:2px solid #ccc;
+}
+
+/* 状态展示时间框设置 */
+.stateShowtime{
+    margin-top:5px;
+    color:#005dc3;
+    display:table-row;
+    text-align: right;
+}
+/* 限定table里面的长数字或者英文自动换行 */
+.stateTable{
+    table-layout:fixed;
+    word-wrap:break-word;
+}
+/* 状态展示中文字部分 */
+.stateShowWord{
+    width:800px;
+}
+/* 状态里面的图片设置 */
+.stateShowWord img{
+    border:none;
+}
+/* 状态里面的图片DIV  */
+.stateImgShow{
+    padding-left:85px;
+    display : inline-block;
+}
+/* 状态里面的操作DIV */
+.stateOp{
+    float:right;
+    text-align:right;
+    visibility:hidden;
+    color:#969696;
+}
+/* 状态里面的操作链接 */
+.stateOp a{
+    margin:0px 10px;
+    cursor:hand;
+}
+a.opState:link{
+    color:#969696;
+    text-decoration:none;
+}
+a.opState:hover{
+    color:#525b96;
+    text-decoration:underline;
+}
+a.opState:visited{
+    color:#969696;
+    text-decoration:none;
+}
+

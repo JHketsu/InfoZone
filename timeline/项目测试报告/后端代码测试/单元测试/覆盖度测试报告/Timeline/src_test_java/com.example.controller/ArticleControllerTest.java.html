@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ArticleControllerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">com.example.controller (2019-1-6 23:40:08)</a> &gt; <a href="../../index.html" class="el_group">Timeline</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.example.controller</a> &gt; <span class="el_source">ArticleControllerTest.java</span></div><h1>ArticleControllerTest.java</h1><pre class="source lang-java linenums">package com.example.controller;
+
+import model.Article;
+import model.FileOperator;
+import model.RemoteDBUnit;
+import model.User;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
+
+<span class="fc" id="L19">public class ArticleControllerTest {</span>
+
+    RemoteDBUnit mockDB;
+    FileOperator mockFO;
+    ArticleController spyAC;
+    ArticleController articleController;
+    User user;
+    Article article;
+    String input;
+    ArrayList&lt;Article&gt; articles;
+
+    @Before
+    public void setUp() throws Exception {
+<span class="fc" id="L32">        mockDB=mock(RemoteDBUnit.class);</span>
+<span class="fc" id="L33">        mockFO=mock(FileOperator.class);</span>
+<span class="fc" id="L34">        spyAC=spy(new ArticleController(mockDB,mockFO));</span>
+<span class="fc" id="L35">        articleController=new ArticleController();</span>
+<span class="fc" id="L36">        user=new User();</span>
+<span class="fc" id="L37">        article=new Article();</span>
+<span class="fc" id="L38">        input=&quot;{\&quot;userID\&quot;:\&quot;1\&quot;,\&quot;content\&quot;:\&quot;1\&quot;,\&quot;image\&quot;:\&quot;1\&quot;,\&quot;show\&quot;:\&quot;1\&quot;,\&quot;articleID\&quot;:\&quot;1\&quot;}&quot;;</span>
+
+<span class="fc" id="L40">        articles=new ArrayList&lt;Article&gt;();</span>
+<span class="fc" id="L41">        article.setUserID(&quot;vickiii@qq.com&quot;);</span>
+<span class="fc" id="L42">        article.setNickname(&quot;vicki&quot;);</span>
+<span class="fc" id="L43">        article.setImageURL(&quot;sample_url&quot;);</span>
+<span class="fc" id="L44">        article.setContent(&quot;sample_content&quot;);</span>
+<span class="fc" id="L45">        articles.add(article);</span>
+<span class="fc" id="L46">    }</span>
+
+    //tests for input
+    @Test
+    public void input_need_articleID_and_should_not_be_null(){
+<span class="fc" id="L51">        doReturn(false).when(spyAC).check(JSONObject.fromObject(input),&quot;articleID&quot;);</span>
+
+<span class="fc" id="L53">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L54">        res1 = spyAC.refresh(input);</span>
+<span class="fc" id="L55">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L56">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L58">        JSONObject res2 = new JSONObject();</span>
+<span class="fc" id="L59">        res2 = spyAC.more(input);</span>
+<span class="fc" id="L60">        Assert.assertEquals(&quot;false&quot;, res2.getString(&quot;message&quot;));</span>
+<span class="fc" id="L61">        Assert.assertEquals(&quot;invalid_input&quot;, res2.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L63">        JSONObject res3 = new JSONObject();</span>
+<span class="fc" id="L64">        res3 = spyAC.delete(input);</span>
+<span class="fc" id="L65">        Assert.assertEquals(&quot;false&quot;, res3.getString(&quot;message&quot;));</span>
+<span class="fc" id="L66">        Assert.assertEquals(&quot;invalid_input&quot;, res3.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L67">    }</span>
+
+    @Test
+    public void input_need_show_and_should_not_be_null(){
+<span class="fc" id="L71">        doReturn(false).when(spyAC).check(JSONObject.fromObject(input),&quot;show&quot;);</span>
+
+<span class="fc" id="L73">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L74">        res1 = spyAC.refresh(input);</span>
+<span class="fc" id="L75">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L76">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L78">        JSONObject res2 = new JSONObject();</span>
+<span class="fc" id="L79">        res2 = spyAC.more(input);</span>
+<span class="fc" id="L80">        Assert.assertEquals(&quot;false&quot;, res2.getString(&quot;message&quot;));</span>
+<span class="fc" id="L81">        Assert.assertEquals(&quot;invalid_input&quot;, res2.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L82">    }</span>
+
+    @Test
+    public void input_need_userID_and_should_not_be_null(){
+<span class="fc" id="L86">        doReturn(false).when(spyAC).check(JSONObject.fromObject(input),&quot;userID&quot;);</span>
+
+<span class="fc" id="L88">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L89">        res1 = spyAC.push(input);</span>
+<span class="fc" id="L90">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L91">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L92">    }</span>
+
+    @Test
+    public void input_need_content_and_should_not_be_null(){
+<span class="fc" id="L96">        doReturn(false).when(spyAC).check(JSONObject.fromObject(input),&quot;content&quot;);</span>
+
+<span class="fc" id="L98">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L99">        res1 = spyAC.push(input);</span>
+<span class="fc" id="L100">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L101">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L102">    }</span>
+
+
+    //tests for push
+    @Test
+    public void userID_should_in_db() {
+<span class="fc" id="L108">        doReturn(false).when(mockDB).userIDinUser(anyString());</span>
+
+<span class="fc" id="L110">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L111">        res = spyAC.push(input);</span>
+
+<span class="fc" id="L113">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L114">        Assert.assertEquals(&quot;invalid_userID&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L115">    }</span>
+
+    @Test
+    public void when_image_is_null_or_not_exist_imageUrl_is_empty() {
+<span class="fc" id="L119">        doReturn(false).when(spyAC).check(JSONObject.fromObject(input),&quot;image&quot;);</span>
+<span class="fc" id="L120">    }</span>
+
+    @Test
+    public void when_get_image_failed_return_false() {
+<span class="fc" id="L124">        doReturn(true).when(mockDB).userIDinUser(anyString());</span>
+<span class="fc" id="L125">        doReturn(&quot;false&quot;).when(mockFO).getImage(anyString(),anyString());</span>
+
+<span class="fc" id="L127">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L128">        res = spyAC.push(input);</span>
+
+<span class="fc" id="L130">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L131">        Assert.assertEquals(&quot;image_upload_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L132">    }</span>
+
+    @Test
+    public void when_insert_article_failed_return_false() {
+<span class="fc" id="L136">        doReturn(true).when(mockDB).userIDinUser(anyString());</span>
+<span class="fc" id="L137">        doReturn(&quot;.jpg&quot;).when(mockFO).getImage(anyString(),anyString());</span>
+<span class="fc" id="L138">        doReturn(false).when(mockDB).insertArticle(any(),any(),any());</span>
+
+<span class="fc" id="L140">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L141">        res = spyAC.push(input);</span>
+
+<span class="fc" id="L143">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L144">        Assert.assertEquals(&quot;insert_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L145">    }</span>
+
+    @Test
+    public void push_return_true_if_everything_is_right(){
+<span class="fc" id="L149">        doReturn(true).when(mockDB).userIDinUser(anyString());</span>
+<span class="fc" id="L150">        doReturn(&quot;.jpg&quot;).when(mockFO).getImage(anyString(),anyString());</span>
+<span class="fc" id="L151">        doReturn(true).when(mockDB).insertArticle(any(),any(),any());</span>
+
+<span class="fc" id="L153">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L154">        res = spyAC.push(input);</span>
+
+<span class="fc" id="L156">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L157">        Assert.assertEquals(&quot;empty&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L158">    }</span>
+
+
+
+
+
+    //tests for refresh
+    @Test
+    public void when_query_current_articles_failed_return_false() {
+<span class="fc" id="L167">        when(mockDB.currentArticles(anyInt(), anyInt())).thenReturn(null);</span>
+
+<span class="fc" id="L169">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L170">        res = spyAC.refresh(input);</span>
+
+<span class="fc" id="L172">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L173">        Assert.assertEquals(&quot;query_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L174">    }</span>
+
+    @Test
+    public void refresh_return_true_if_everything_is_right(){
+<span class="fc" id="L178">        when(mockDB.currentArticles(anyInt(), anyInt())).thenReturn(articles);</span>
+
+<span class="fc" id="L180">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L181">        res = spyAC.refresh(input);</span>
+
+<span class="fc" id="L183">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L184">        Assert.assertEquals(&quot;empty&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L185">        Assert.assertEquals(JSONArray.fromObject(articles).toString(), res.getString(&quot;articles&quot;));</span>
+<span class="fc" id="L186">        Assert.assertEquals(&quot;1&quot;, res.getString(&quot;num&quot;));</span>
+<span class="fc" id="L187">    }</span>
+
+
+    //tests for more
+    @Test
+    public void when_query_previous_articles_failed_return_false() {
+<span class="fc" id="L193">        when(mockDB.previousArticles(anyInt(), anyInt())).thenReturn(null);</span>
+
+<span class="fc" id="L195">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L196">        res = spyAC.more(input);</span>
+
+<span class="fc" id="L198">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L199">        Assert.assertEquals(&quot;query_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L200">    }</span>
+
+    @Test
+    public void more_return_true_if_everything_is_right(){
+<span class="fc" id="L204">        when(mockDB.previousArticles(anyInt(), anyInt())).thenReturn(articles);</span>
+
+<span class="fc" id="L206">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L207">        res = spyAC.more(input);</span>
+
+<span class="fc" id="L209">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L210">        Assert.assertEquals(&quot;empty&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L211">        Assert.assertEquals(JSONArray.fromObject(articles).toString(), res.getString(&quot;articles&quot;));</span>
+<span class="fc" id="L212">        Assert.assertEquals(&quot;1&quot;, res.getString(&quot;num&quot;));</span>
+<span class="fc" id="L213">    }</span>
+
+
+    //tests for delete
+    @Test
+    public void articleID_should_in_db(){
+<span class="fc" id="L219">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(false);</span>
+
+<span class="fc" id="L221">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L222">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L224">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L225">        Assert.assertEquals(&quot;invalid_articleID&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L226">    }</span>
+
+    @Test
+    public void when_imageUrl_query_failed_return_false(){
+<span class="fc" id="L230">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(true);</span>
+<span class="fc" id="L231">        when(mockDB.getImageUrl(anyInt())).thenReturn(null);</span>
+
+<span class="fc" id="L233">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L234">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L236">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L237">        Assert.assertEquals(&quot;query_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L238">    }</span>
+
+    @Test
+    public void when_delete_article_failed_return_false(){
+<span class="fc" id="L242">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(true);</span>
+<span class="fc" id="L243">        when(mockDB.getImageUrl(anyInt())).thenReturn(&quot;sample_url&quot;);</span>
+<span class="fc" id="L244">        when(mockDB.deleteArticle(anyInt())).thenReturn(false);</span>
+
+<span class="fc" id="L246">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L247">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L249">        Assert.assertEquals(&quot;false&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L250">        Assert.assertEquals(&quot;query_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L251">    }</span>
+
+    @Test
+    public void when_imageUrl_is_empty_wont_call_deleteImage_and_return_true(){
+
+<span class="fc" id="L256">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(true);</span>
+<span class="fc" id="L257">        when(mockDB.getImageUrl(anyInt())).thenReturn(&quot;empty&quot;);</span>
+<span class="fc" id="L258">        when(mockDB.deleteArticle(anyInt())).thenReturn(true);</span>
+
+<span class="fc" id="L260">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L261">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L263">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L264">        Assert.assertEquals(&quot;empty&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L265">        verify(mockFO,times(0)).deleteImage(anyString());</span>
+<span class="fc" id="L266">    }</span>
+
+    @Test
+    public void when_delete_image_file_failed_return_false(){
+<span class="fc" id="L270">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(true);</span>
+<span class="fc" id="L271">        when(mockDB.getImageUrl(anyInt())).thenReturn(&quot;sample_url&quot;);</span>
+<span class="fc" id="L272">        when(mockDB.deleteArticle(anyInt())).thenReturn(true);</span>
+        //spy object should return first
+<span class="fc" id="L274">        doReturn(false).when(mockFO).deleteImage(anyString());</span>
+
+<span class="fc" id="L276">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L277">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L279">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L280">        Assert.assertEquals(&quot;delete_error&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L281">    }</span>
+
+    @Test
+    public void delete_return_true_if_everything_is_right(){
+<span class="fc" id="L285">        when(mockDB.articleIDinArticle(anyInt())).thenReturn(true);</span>
+<span class="fc" id="L286">        when(mockDB.getImageUrl(anyInt())).thenReturn(&quot;sample_url&quot;);</span>
+<span class="fc" id="L287">        when(mockDB.deleteArticle(anyInt())).thenReturn(true);</span>
+        //spy object should return first
+<span class="fc" id="L289">        doReturn(true).when(mockFO).deleteImage(anyString());</span>
+
+<span class="fc" id="L291">        JSONObject res = new JSONObject();</span>
+<span class="fc" id="L292">        res = spyAC.delete(input);</span>
+
+<span class="fc" id="L294">        Assert.assertEquals(&quot;true&quot;, res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L295">        Assert.assertEquals(&quot;empty&quot;, res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L296">    }</span>
+
+    //test for check
+    @Test
+    public void checkTest(){
+<span class="fc" id="L301">        JSONObject jsonInput=new JSONObject();</span>
+        String item;
+
+<span class="fc" id="L304">        jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;1\&quot;}&quot;);</span>
+<span class="fc" id="L305">        item=&quot;nickname&quot;;</span>
+<span class="fc" id="L306">        Assert.assertEquals(false,spyAC.check(jsonInput,item));</span>
+
+<span class="fc" id="L308">        jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;\&quot;}&quot;);</span>
+<span class="fc" id="L309">        item=&quot;userID&quot;;</span>
+<span class="fc" id="L310">        Assert.assertEquals(false,spyAC.check(jsonInput,item));</span>
+
+<span class="fc" id="L312">        jsonInput=jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;1\&quot;}&quot;);</span>
+<span class="fc" id="L313">        item=&quot;userID&quot;;</span>
+<span class="fc" id="L314">        Assert.assertEquals(true,spyAC.check(jsonInput,item));</span>
+<span class="fc" id="L315">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>com.example.controller (2019-1-6 23:40:08)</div></body></html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FileOperator.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">com.example.controller (2019-1-6 23:40:08)</a> &gt; <a href="../../index.html" class="el_group">Timeline</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">FileOperator.java</span></div><h1>FileOperator.java</h1><pre class="source lang-java linenums">package model;
+
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import sun.misc.BASE64Decoder;
+
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+<span class="fc" id="L13">public class FileOperator {</span>
+    public boolean deleteImage(String url) {
+<span class="nc" id="L15">        String str = url;</span>
+<span class="nc" id="L16">        String[] buff = str.split(&quot;/&quot;);</span>
+<span class="nc" id="L17">        String fileName = buff[buff.length - 1];</span>
+
+
+//        //local
+//        WebApplicationContext webApplicationContext = ContextLoader
+//                .getCurrentWebApplicationContext();
+//        ServletContext servletContext = webApplicationContext
+//                .getServletContext();
+//        // 得到文件绝对路径
+//        String realPath = servletContext.getRealPath(&quot;/img/&quot;);
+
+        //web
+<span class="nc" id="L29">        String realPath=&quot;/home/ubuntu/apache-tomcat-8.5.35/webapps/timeline/img/&quot;;</span>
+
+
+<span class="nc" id="L32">        String path = realPath+ fileName;</span>
+
+
+<span class="nc" id="L35">        File file = new File(path);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (!file.exists()) return false;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (file.delete()) {</span>
+<span class="nc" id="L38">            return true;</span>
+        } else {
+<span class="nc" id="L40">            return false;</span>
+        }
+    }
+
+    public String getImage(String imgStr, String imgname) {
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (imgStr == null)</span>
+<span class="nc" id="L46">            return &quot;false&quot;;</span>
+        //判断图片类型，处理base64前缀
+<span class="nc" id="L48">        String type=&quot;.jpg&quot;;</span>
+<span class="nc" id="L49">        String suffix[]={&quot;.jpg&quot;,&quot;.gif&quot;,&quot;.png&quot;,&quot;.jpg&quot;};</span>
+<span class="nc" id="L50">        String prefix[]={&quot;data:image/jpg;base64,&quot;,&quot;data:image/gif;base64,&quot;,&quot;data:image/png;base64,&quot;,&quot;data:image/jpeg;base64,&quot;};</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for(int i=0;i&lt;prefix.length;i++)</span>
+        {
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if(imgStr.indexOf(prefix[i])&gt;=0) {</span>
+<span class="nc" id="L54">                imgStr=imgStr.replace(prefix[i], &quot;&quot;);</span>
+<span class="nc" id="L55">                type=suffix[i];</span>
+            }
+        }
+
+<span class="nc" id="L59">        BASE64Decoder decoder = new BASE64Decoder();</span>
+        try {
+<span class="nc" id="L61">            byte[] b = decoder.decodeBuffer(imgStr);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            for (int i = 0; i &lt; b.length; ++i) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (b[i] &lt; 0) {</span>
+<span class="nc" id="L64">                    b[i] += 256;</span>
+                }
+            }
+//            //生成jpeg图片
+
+//            //local
+//            WebApplicationContext webApplicationContext = ContextLoader
+//                    .getCurrentWebApplicationContext();
+//            ServletContext servletContext = webApplicationContext
+//                    .getServletContext();
+//            // 得到文件绝对路径
+//            String realPath = servletContext.getRealPath(&quot;/img/&quot;);
+////            //web
+<span class="nc" id="L77">            String realPath=&quot;/home/ubuntu/apache-tomcat-8.5.35/webapps/timeline/img/&quot;;</span>
+<span class="nc" id="L78">            String imgFilePath = realPath+ imgname + type;</span>
+
+<span class="nc" id="L80">            OutputStream out = new FileOutputStream(imgFilePath);</span>
+            try {
+<span class="nc" id="L82">                out.write(b);</span>
+<span class="nc" id="L83">                out.flush();</span>
+<span class="nc" id="L84">            }finally {</span>
+<span class="nc" id="L85">                out.close();</span>
+            }
+<span class="nc" id="L87">            return type;</span>
+<span class="nc" id="L88">        } catch (IOException e) {</span>
+<span class="nc" id="L89">            e.printStackTrace();</span>
+<span class="nc" id="L90">            return &quot;false&quot;;</span>
+
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>com.example.controller (2019-1-6 23:40:08)</div></body></html>

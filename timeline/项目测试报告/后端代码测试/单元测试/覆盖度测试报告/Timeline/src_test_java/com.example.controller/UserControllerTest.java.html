@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UserControllerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">com.example.controller (2019-1-6 23:40:08)</a> &gt; <a href="../../index.html" class="el_group">Timeline</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.example.controller</a> &gt; <span class="el_source">UserControllerTest.java</span></div><h1>UserControllerTest.java</h1><pre class="source lang-java linenums">package com.example.controller;
+
+import model.RemoteDBUnit;
+import model.User;
+import net.sf.json.JSONObject;
+
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L14">public class UserControllerTest {</span>
+
+    RemoteDBUnit mockDB;
+    UserController userController;
+    UserController spyUC;
+    User user;
+    String input;
+
+    @Before
+    public void setUp() throws Exception {
+<span class="fc" id="L24">        mockDB=mock(RemoteDBUnit.class);</span>
+<span class="fc" id="L25">        userController=new UserController(mockDB);</span>
+<span class="fc" id="L26">        spyUC=spy(new UserController());</span>
+<span class="fc" id="L27">        user=new User();</span>
+<span class="fc" id="L28">        input=&quot;{\&quot;userID\&quot;:\&quot;vickiii@qq.com\&quot;,\&quot;nickname\&quot;:\&quot;vicki\&quot;,\&quot;password\&quot;:\&quot;123456\&quot;}&quot;;</span>
+<span class="fc" id="L29">    }</span>
+
+    //tests for input
+    @Test
+    public void input_need_userID_and_should_not_be_null(){
+<span class="fc" id="L34">        doReturn(false).when(spyUC).check(JSONObject.fromObject(input),&quot;userID&quot;);</span>
+
+<span class="fc" id="L36">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L37">        res1 = spyUC.login(input);</span>
+<span class="fc" id="L38">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L39">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L41">        JSONObject res2 = new JSONObject();</span>
+<span class="fc" id="L42">        res2 = spyUC.register(input);</span>
+<span class="fc" id="L43">        Assert.assertEquals(&quot;false&quot;, res2.getString(&quot;message&quot;));</span>
+<span class="fc" id="L44">        Assert.assertEquals(&quot;invalid_input&quot;, res2.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L45">    }</span>
+
+    @Test
+    public void input_need_password_and_should_not_be_null(){
+<span class="fc" id="L49">        doReturn(false).when(spyUC).check(JSONObject.fromObject(input),&quot;password&quot;);</span>
+
+<span class="fc" id="L51">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L52">        res1 = spyUC.login(input);</span>
+<span class="fc" id="L53">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L54">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L56">        JSONObject res2 = new JSONObject();</span>
+<span class="fc" id="L57">        res2 = spyUC.register(input);</span>
+<span class="fc" id="L58">        Assert.assertEquals(&quot;false&quot;, res2.getString(&quot;message&quot;));</span>
+<span class="fc" id="L59">        Assert.assertEquals(&quot;invalid_input&quot;, res2.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L60">    }</span>
+
+    @Test
+    public void input_need_nickname_and_should_not_be_null(){
+<span class="fc" id="L64">        doReturn(false).when(spyUC).check(JSONObject.fromObject(input),&quot;nickname&quot;);</span>
+
+<span class="fc" id="L66">        JSONObject res1 = new JSONObject();</span>
+<span class="fc" id="L67">        res1 = spyUC.register(input);</span>
+<span class="fc" id="L68">        Assert.assertEquals(&quot;false&quot;, res1.getString(&quot;message&quot;));</span>
+<span class="fc" id="L69">        Assert.assertEquals(&quot;invalid_input&quot;, res1.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L70">    }</span>
+
+
+    //tests for register
+    @Test
+    public void userID_cant_be_repeated_when_register() {
+<span class="fc" id="L76">        when(mockDB.userIDinUser(anyString())).thenReturn(true);</span>
+
+<span class="fc" id="L78">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L79">        res = userController.register(input);</span>
+
+        //(expect,actual)
+<span class="fc" id="L82">        Assert.assertEquals(&quot;false&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L83">        Assert.assertEquals(&quot;userID_repeated&quot;,res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L84">    }</span>
+
+    @Test
+    public void when_insert_error_return_false() {
+<span class="fc" id="L88">        when(mockDB.userIDinUser(anyString())).thenReturn(false);</span>
+<span class="fc" id="L89">        when(mockDB.insertUser(anyString(),anyString(),anyString())).thenReturn(false);</span>
+
+<span class="fc" id="L91">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L92">        res = userController.register(input);</span>
+
+<span class="fc" id="L94">        Assert.assertEquals(&quot;false&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L95">        Assert.assertEquals(&quot;userID_repeated&quot;,res.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L97">    }</span>
+
+    @Test
+    public void register_return_true_if_everything_is_right() {
+<span class="fc" id="L101">        when(mockDB.userIDinUser(anyString())).thenReturn(false);</span>
+<span class="fc" id="L102">        when(mockDB.insertUser(anyString(),anyString(),anyString())).thenReturn(true);</span>
+
+<span class="fc" id="L104">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L105">        res = userController.register(input);</span>
+
+<span class="fc" id="L107">        Assert.assertEquals(&quot;true&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L108">        Assert.assertEquals(&quot;empty&quot;,res.getString(&quot;errorType&quot;));</span>
+
+<span class="fc" id="L110">    }</span>
+
+
+    //tests for login
+    @Test
+    public void userId_should_in_db_when_login(){
+<span class="fc" id="L116">        when(mockDB.userIDinUser(anyString())).thenReturn(false);</span>
+
+<span class="fc" id="L118">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L119">        res = userController.login(input);</span>
+
+<span class="fc" id="L121">        Assert.assertEquals(&quot;false&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L122">        Assert.assertEquals(&quot;invalid_userID&quot;,res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L123">    }</span>
+
+    @Test
+    public void password_should_match_userID(){
+<span class="fc" id="L127">        when(mockDB.userIDinUser(anyString())).thenReturn(true);</span>
+<span class="fc" id="L128">        when(mockDB.matchPassword(anyString(),anyString())).thenReturn(false);</span>
+
+<span class="fc" id="L130">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L131">        res = userController.login(input);</span>
+
+<span class="fc" id="L133">        Assert.assertEquals(&quot;false&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L134">        Assert.assertEquals(&quot;invalid_userID_or_password&quot;,res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L135">    }</span>
+
+    @Test
+    public void get_nickname_failed_will_return_false(){
+<span class="fc" id="L139">        when(mockDB.userIDinUser(anyString())).thenReturn(true);</span>
+<span class="fc" id="L140">        when(mockDB.matchPassword(anyString(),anyString())).thenReturn(true);</span>
+<span class="fc" id="L141">        when(mockDB.getNickname(anyString())).thenReturn(null);</span>
+
+<span class="fc" id="L143">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L144">        res = userController.login(input);</span>
+
+<span class="fc" id="L146">        Assert.assertEquals(&quot;false&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L147">        Assert.assertEquals(&quot;query_error&quot;,res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L148">    }</span>
+
+    @Test
+    public void login_return_true_if_everything_is_right(){
+<span class="fc" id="L152">        when(mockDB.userIDinUser(anyString())).thenReturn(true);</span>
+<span class="fc" id="L153">        when(mockDB.matchPassword(anyString(),anyString())).thenReturn(true);</span>
+<span class="fc" id="L154">        when(mockDB.getNickname(anyString())).thenReturn(&quot;right_nickname&quot;);</span>
+
+<span class="fc" id="L156">        JSONObject res= new JSONObject();</span>
+<span class="fc" id="L157">        res = userController.login(input);</span>
+
+<span class="fc" id="L159">        Assert.assertEquals(&quot;true&quot;,res.getString(&quot;message&quot;));</span>
+<span class="fc" id="L160">        Assert.assertEquals(&quot;empty&quot;,res.getString(&quot;errorType&quot;));</span>
+<span class="fc" id="L161">        Assert.assertEquals(&quot;right_nickname&quot;,res.getString(&quot;nickname&quot;));</span>
+<span class="fc" id="L162">    }</span>
+
+
+    //test for check
+    @Test
+    public void checkTest(){
+<span class="fc" id="L168">        JSONObject jsonInput=new JSONObject();</span>
+        String item;
+
+<span class="fc" id="L171">        jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;1\&quot;}&quot;);</span>
+<span class="fc" id="L172">        item=&quot;nickname&quot;;</span>
+<span class="fc" id="L173">        Assert.assertEquals(false,spyUC.check(jsonInput,item));</span>
+
+<span class="fc" id="L175">        jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;\&quot;}&quot;);</span>
+<span class="fc" id="L176">        item=&quot;userID&quot;;</span>
+<span class="fc" id="L177">        Assert.assertEquals(false,spyUC.check(jsonInput,item));</span>
+
+<span class="fc" id="L179">        jsonInput=jsonInput=JSONObject.fromObject(&quot;{\&quot;userID\&quot;:\&quot;1\&quot;}&quot;);</span>
+<span class="fc" id="L180">        item=&quot;userID&quot;;</span>
+<span class="fc" id="L181">        Assert.assertEquals(true,spyUC.check(jsonInput,item));</span>
+<span class="fc" id="L182">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>com.example.controller (2019-1-6 23:40:08)</div></body></html>

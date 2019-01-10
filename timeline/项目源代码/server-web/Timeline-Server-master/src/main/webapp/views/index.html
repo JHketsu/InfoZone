@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Timeline</title>
+    <link rel="stylesheet" type="text/css" href="info.css"/>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="load.js"></script>
+    <script>
+        var imageStatus = false;
+        var imageCode = "";
+        $(function(){
+            var input = document.getElementById("image_input");
+            if (typeof (FileReader) === 'undefined') {
+                alert("抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！");
+                input.setAttribute('disabled', 'disabled');
+            } else {
+                //开始监听
+                input.addEventListener('change', readFile, false);
+            }
+            function readFile(){
+                var file = this.files[0];
+                //判断是否是图片类型
+                if(!/image\/\w+/.test(file.type)){
+                    alert("请检查是否为图片！");
+                    return false;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    console.log(this.result);
+                    imageCode = this.result;
+                }
+                imageStatus = true;
+
+
+            }
+        })
+        $(document).ready(function(){
+            $("#postText").click(function(event) {
+                event.preventDefault();
+                var pUserID = sessionStorage.userID;
+                console.log(pUserID);
+                var pContent = ""+document.getElementById("txt").value;
+                console.log(pContent);
+                if(imageStatus){
+                    $.ajax({
+                        type : "POST",
+                        data : JSON.stringify({
+                            userID: pUserID,
+                            content: pContent,
+                            image:imageCode}),
+                        datatype : "json",
+                        contentType: 'application/json;charset=utf-8',
+                        url : "http://129.204.74.128:8080/timeline/article/push",
+                        success: function(data){
+                            if (data.message == "true") {
+                                alert("发表成功");
+                                window.location.href = "http://129.204.74.128:8080/timeline/views/index.html";
+                            } else {
+                                alert("未发表成功，请重试");
+                            }
+                        },
+                        error: function(xhr,status,err){
+                            alert(xhr.status);
+                            alert(xhr.readyState);
+                            alert("连接失败！ " + status + ": " + err.toString());
+                        }
+                    })}
+                else{
+                    $.ajax({
+                        type : "POST",
+                        data : JSON.stringify({
+                            userID: pUserID,
+                            content: pContent}),
+                        datatype : "json",
+                        contentType: 'application/json;charset=utf-8',
+                        url : "http://129.204.74.128:8080/timeline/article/push",
+                        success: function(data){
+                            if (data.message == "true") {
+                                alert("发表成功");
+                                window.location.href = "http://129.204.74.128:8080/timeline/views/index.html";
+                            } else {
+                                alert("未发表成功，请重试");
+                            }
+                        },
+                        error: function(xhr,status,err){
+                            alert(xhr.status);
+                            alert(xhr.readyState);
+                            alert("连接失败！ " + status + ": " + err.toString());
+                        }
+                    })}
+            })
+        })
+    </script>
+</head>
+<!------------------------------------html --------------------------------->
+<body onload="Search()">
+<div id="myFrame">
+    <header>
+        <h1>Timeline</h1>
+        <h3>欢迎您，<script>document.write(sessionStorage.nickname)</script></h3>
+    </header>
+    <!-- 发布栏 -->
+    <div class = "box">
+        <!-- 选择图片-->
+        <div >
+            <a href="javascript:;" class="file">上传图片
+                <input type="file" name="" id="image_input">
+            </a>长时间停留显示文件名
+        </div>
+        <textarea id="txt" cols="60" rows="10" wrap="hard" placeholder="听说140字是正确姿势"></textarea>
+        <button class="btn1" id="postText">发布</button>
+        <img src="images/icon.png" alt="广告摊位" height="150"  />
+    </div>
+    <!--简单分割空间-->
+    <div> <p>  </p></div>
+    <!--不同人的内容-->
+    <div id="contentList">
+        <!--个人展示-->
+       <!-- <div class="stateShow" >
+            <div class="stateShowWord">
+                <table  border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                        <td width="70" align="center" valign="top"><a >zwgg</a></td>
+                        <td >【八成网友和王思聪反着，16岁才发现家里没钱】调查发现，约八成网友过的是王思聪的反向人生：小时候被娇生惯养，想要什么爸妈就给买什么，有时不想要爸妈也硬给买，于是一直以为家里很有钱，但大约到了16岁，消费的胃口越来越大，发现想要的东西爸妈根本买不起后，才发现原来家里压根没钱。</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="stateImgShow"><img src="images/bug1.jpg" alt="图片未找到" width = 300 align = "left"/></div>
+            <div class="stateShowtime"> 刚刚</div>
+        </div> -->
+        <!--个人展示结束-->
+
+        <!--个人展示-->
+        <!--
+        <div class="stateShow" >
+            <div class="stateShowWord">
+                <table  border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                        <td width="70" align="center" valign="top"><img src="images/face2.jpg" alt="你的头像" width="80" height="80" /><a>野草少年</a></td>
+                        <td >【冬至考研北方考生最为吃亏】调查发现，考研赶上冬至对北方考生最为不利，因为冬至这一天北方考生和北方人一样，一整天魂牵梦绕的都是饺子，北方考生下午答题时甚至都会想用笔去夹饺子吃，还有一些北方考生为了晚上能抢得上饺子而不得不提前交卷。因此今年考研通过率北方考生肯定不如南方。 </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="stateImgShow"><img src="images/bug2.jpg" alt="图片未找到" width = 300 align = "left"/></div>
+            <div class="stateShowtime"> 刚刚 </div>
+        </div>
+        -->
+        <!--个人展示结束-->
+        <!--个人展示-->
+        <!--
+        <div class="stateShow" >
+            <div class="stateShowWord">
+                <table  border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                        <td width="70" align="center" valign="top"><img src="images/face1.png" alt="你的头像" width="80" height="80" /><a >zwgg</a></td>
+                        <td >让我试试不插入图片会显示啥，tomcat好像每次部署不能太频繁？？？</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="stateImgShow"><img src="" alt="图片未找到" width = 300 align = "left"/></div>
+            <div class="stateShowtime"> 刚刚</div>
+        </div> -->
+        <!--个人展示结束-->
+    </div>
+    <div class="add-more" id="addmore_btn"><button  onclick="loadMore()">加载更多</button></div>
+</div>
+
+</body>
+</html>

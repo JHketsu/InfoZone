@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+</head>
+<body>
+<h1>FindBugs Report</h1>
+<p>Produced using <a href="http://findbugs.sourceforge.net">FindBugs</a>3.0.1.</p>
+<p>Project: 
+			TimeLine[Timeline]</p>
+<h2>Metrics</h2>
+<p>361 lines of code analyzed,
+	in 2 classes, 
+	in 1 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right"/>
+<td align="right">NaN</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">14</td>
+<td align="right">38.78</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>14</b>
+</td>
+<td align="right">
+<b>38.78</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Summary</h2>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</td>
+<td align="right">5</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">3</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">4</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>14</b>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h1>Warnings</h1>
+<p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#ODR_OPEN_DATABASE_RESOURCE">Method may fail to close database resource</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.ArticleController.delete(String) may fail to close PreparedStatement<br/>
+<br/>
+<br/>In file ArticleController.java,
+					
+						line 302<br/>In class com.example.controller.ArticleController<br/>In method com.example.controller.ArticleController.delete(String)<br/>Need to close java.sql.PreparedStatement <br/>At ArticleController.java:[line 302]<br/>At ArticleController.java:[line 302]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#ODR_OPEN_DATABASE_RESOURCE">Method may fail to close database resource</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.register(String) may fail to close PreparedStatement<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 62<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.register(String)<br/>Need to close java.sql.PreparedStatement <br/>At UserController.java:[line 62]<br/>At UserController.java:[line 62]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.ArticleController.more(String) may fail to clean up java.sql.Statement on checked exception<br/>
+<br/>
+<br/>In file ArticleController.java,
+					
+						line 239<br/>In class com.example.controller.ArticleController<br/>In method com.example.controller.ArticleController.more(String)<br/>Reference type java.sql.Statement<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at ArticleController.java:[line 239] is not discharged<br/>Path continues at ArticleController.java:[line 240]<br/>Path continues at ArticleController.java:[line 241]<br/>Path continues at ArticleController.java:[line 242]<br/>Path continues at ArticleController.java:[line 243]<br/>Path continues at ArticleController.java:[line 259]<br/>Path continues at ArticleController.java:[line 260]<br/>Path continues at ArticleController.java:[line 261]<br/>Path continues at ArticleController.java:[line 262]<br/>Path continues at ArticleController.java:[line 264]<br/>Remaining obligations: {Statement x 1}</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.ArticleController.push(String) may fail to clean up java.sql.Statement on checked exception<br/>
+<br/>
+<br/>In file ArticleController.java,
+					
+						line 87<br/>In class com.example.controller.ArticleController<br/>In method com.example.controller.ArticleController.push(String)<br/>Reference type java.sql.Statement<br/>2 instances of obligation remaining<br/>Obligation to clean up resource created at ArticleController.java:[line 87] is not discharged<br/>Path continues at ArticleController.java:[line 88]<br/>Path continues at ArticleController.java:[line 89]<br/>Path continues at ArticleController.java:[line 90]<br/>Path continues at ArticleController.java:[line 95]<br/>Path continues at ArticleController.java:[line 96]<br/>Obligation to clean up resource created at ArticleController.java:[line 96] is not discharged<br/>Path continues at ArticleController.java:[line 97]<br/>Path continues at ArticleController.java:[line 102]<br/>Path continues at ArticleController.java:[line 103]<br/>Path continues at ArticleController.java:[line 104]<br/>Path continues at ArticleController.java:[line 105]<br/>Path continues at ArticleController.java:[line 108]<br/>Remaining obligations: {Statement x 2}</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.ArticleController.refresh(String) may fail to clean up java.sql.Statement on checked exception<br/>
+<br/>
+<br/>In file ArticleController.java,
+					
+						line 143<br/>In class com.example.controller.ArticleController<br/>In method com.example.controller.ArticleController.refresh(String)<br/>Reference type java.sql.Statement<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at ArticleController.java:[line 143] is not discharged<br/>Path continues at ArticleController.java:[line 144]<br/>Path continues at ArticleController.java:[line 145]<br/>Path continues at ArticleController.java:[line 146]<br/>Path continues at ArticleController.java:[line 147]<br/>Path continues at ArticleController.java:[line 164]<br/>Path continues at ArticleController.java:[line 165]<br/>Path continues at ArticleController.java:[line 166]<br/>Path continues at ArticleController.java:[line 167]<br/>Path continues at ArticleController.java:[line 169]<br/>Remaining obligations: {Statement x 1}</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.getnickName(String) may fail to clean up java.sql.Statement on checked exception<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 172<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.getnickName(String)<br/>Reference type java.sql.Statement<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at UserController.java:[line 172] is not discharged<br/>Path continues at UserController.java:[line 173]<br/>Path continues at UserController.java:[line 174]<br/>Path continues at UserController.java:[line 175]<br/>Path continues at UserController.java:[line 176]<br/>Path continues at UserController.java:[line 185]<br/>Path continues at UserController.java:[line 186]<br/>Path continues at UserController.java:[line 193]<br/>Remaining obligations: {Statement x 1}</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.login(String) may fail to clean up java.sql.Statement on checked exception<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 113<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.login(String)<br/>Reference type java.sql.Statement<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at UserController.java:[line 113] is not discharged<br/>Path continues at UserController.java:[line 114]<br/>Path continues at UserController.java:[line 115]<br/>Path continues at UserController.java:[line 116]<br/>Path continues at UserController.java:[line 117]<br/>Path continues at UserController.java:[line 127]<br/>Path continues at UserController.java:[line 138]<br/>Remaining obligations: {Statement x 1}</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DM_STRING_VOID_CTOR">Method invokes inefficient new String() constructor</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.getnickName(String) invokes inefficient new String() constructor<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 170<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.getnickName(String)<br/>At UserController.java:[line 170]<br/>At UserController.java:[line 170]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DM_STRING_VOID_CTOR">Method invokes inefficient new String() constructor</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.login(String) invokes inefficient new String() constructor<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 111<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.login(String)<br/>At UserController.java:[line 111]<br/>At UserController.java:[line 111]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DM_STRING_VOID_CTOR">Method invokes inefficient new String() constructor</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>com.example.controller.UserController.register(String) invokes inefficient new String() constructor<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 48<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.register(String)<br/>At UserController.java:[line 48]<br/>At UserController.java:[line 48]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to sql in com.example.controller.UserController.getnickName(String)<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 170<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.getnickName(String)<br/>Local variable named sql<br/>At UserController.java:[line 170]<br/>At UserController.java:[line 170]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to sql in com.example.controller.UserController.login(String)<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 111<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.login(String)<br/>Local variable named sql<br/>At UserController.java:[line 111]<br/>At UserController.java:[line 111]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to sql in com.example.controller.UserController.register(String)<br/>
+<br/>
+<br/>In file UserController.java,
+					
+						line 48<br/>In class com.example.controller.UserController<br/>In method com.example.controller.UserController.register(String)<br/>Local variable named sql<br/>At UserController.java:[line 48]<br/>At UserController.java:[line 48]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#REC_CATCH_EXCEPTION">Exception is caught when Exception is not thrown</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Exception is caught when Exception is not thrown in com.example.controller.ArticleController.getImage(String, String)<br/>
+<br/>
+<br/>In file ArticleController.java,
+					
+						line 376<br/>In class com.example.controller.ArticleController<br/>In method com.example.controller.ArticleController.getImage(String, String)<br/>At ArticleController.java:[line 376]<br/>At ArticleController.java:[line 376]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h1>
+<a name="Details">Warning Types</a>
+</h1>
+<h2>
+<a name="DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="DM_STRING_VOID_CTOR">Method invokes inefficient new String() constructor</a>
+</h2>
+
+  <p> Creating a new <code>java.lang.String</code> object using the
+  no-argument constructor wastes memory because the object so created will
+  be functionally indistinguishable from the empty string constant
+  <code>""</code>.&nbsp; Java guarantees that identical string constants
+  will be represented by the same <code>String</code> object.&nbsp; Therefore,
+  you should just use the empty string constant directly.</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Method may fail to clean up stream or resource on checked exception</a>
+</h2>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="ODR_OPEN_DATABASE_RESOURCE">Method may fail to close database resource</a>
+</h2>
+
+<p> The method creates a database resource (such as a database connection
+or row set), does not assign it to any
+fields, pass it to other methods, or return it, and does not appear to close
+the object on all paths out of the method.&nbsp; Failure to
+close database resources on all paths out of a method may
+result in poor performance, and could cause the application to
+have problems communicating with the database.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="REC_CATCH_EXCEPTION">Exception is caught when Exception is not thrown</a>
+</h2>
+  
+  <p>
+  This method uses a try-catch block that catches Exception objects, but Exception is not
+  thrown within the try block, and RuntimeException is not explicitly caught.  It is a common bug pattern to
+  say try { ... } catch (Exception e) { something } as a shorthand for catching a number of types of exception
+  each of whose catch blocks is identical, but this construct also accidentally catches RuntimeException as well,
+  masking potential bugs.
+  </p>
+  <p>A better approach is to either explicitly catch the specific exceptions that are thrown,
+  or to explicitly catch RuntimeException exception, rethrow it, and then catch all non-Runtime Exceptions, as shown below:</p>
+  <pre>
+  try {
+    ...
+  } catch (RuntimeException e) {
+    throw e;
+  } catch (Exception e) {
+    ... deal with all non-runtime exceptions ...
+  }</pre>
+  
+     
+<p>
+<br/>
+<br/>
+</p>
+</body>
+</html>

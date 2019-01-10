@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ArticleController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">com.example.controller (2019-1-6 23:40:08)</a> &gt; <a href="../../index.html" class="el_group">Timeline</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.example.controller</a> &gt; <span class="el_source">ArticleController.java</span></div><h1>ArticleController.java</h1><pre class="source lang-java linenums">package com.example.controller;
+
+import model.*;
+import net.sf.json.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.SimpleDateFormat;
+
+import java.util.*;
+import java.util.Date;
+
+@Controller
+@RequestMapping(&quot;/article&quot;)
+
+public class ArticleController {
+    RemoteDBUnit remoteDBUnit;
+    FileOperator fileOperator;
+
+    @RequestMapping(value = &quot;/push&quot;)
+    @ResponseBody
+    public JSONObject push(@RequestBody String json ) {
+//        RemoteDBUnit remoteDBUnit = new RemoteDBUnit();
+
+<span class="fc" id="L27">        JSONObject object = JSONObject.fromObject(json);</span>
+<span class="fc" id="L28">        Article article = new Article();</span>
+<span class="fc" id="L29">        NormalMessage msg = new NormalMessage();</span>
+
+        //input
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(check(object,&quot;userID&quot;)==false){</span>
+<span class="fc" id="L33">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L34">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L35">            return JSONObject.fromObject(msg);</span>
+        }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if(check(object,&quot;content&quot;)==false){</span>
+<span class="fc" id="L38">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L39">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L40">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L43">        article.setUserID(object.getString(&quot;userID&quot;));</span>
+<span class="fc" id="L44">        article.setContent(object.getString(&quot;content&quot;));</span>
+
+
+        //userID是否有效
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (remoteDBUnit.userIDinUser(article.getUserID()) == false) {</span>
+<span class="fc" id="L49">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L50">            msg.setErrorType(&quot;invalid_userID&quot;);</span>
+<span class="fc" id="L51">            return JSONObject.fromObject(msg);</span>
+        }
+
+
+        //deal with image
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if(check(object,&quot;image&quot;)==false)article.setImageURL(&quot;empty&quot;);</span>
+        else  {
+<span class="fc" id="L58">            String base=object.getString(&quot;image&quot;);</span>
+            //生成图片名
+            SimpleDateFormat simpleDateFormat;
+<span class="fc" id="L61">            simpleDateFormat = new SimpleDateFormat(&quot;ddHHssSSS&quot;);</span>
+<span class="fc" id="L62">            Date date = new Date();</span>
+<span class="fc" id="L63">            String str = simpleDateFormat.format(date);</span>
+<span class="fc" id="L64">            Random random = new Random();</span>
+<span class="fc" id="L65">            int rannum = random.nextInt() * (99999 - 10000 + 1) + 10000;// 获取5位随机数</span>
+<span class="fc" id="L66">            String imgname = rannum + &quot;&quot; + str;</span>
+<span class="fc" id="L67">            String url = RemoteDBUnit.hostUrl + imgname;</span>
+            //String imgPath = new String();
+<span class="fc" id="L69">            String type= fileOperator.getImage(base, imgname);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (type != &quot;false&quot;) article.setImageURL(url+type);</span>
+            else {
+<span class="fc" id="L72">                msg.setErrorType(&quot;image_upload_error&quot;);</span>
+<span class="fc" id="L73">                msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L74">                return JSONObject.fromObject(msg);</span>
+            }
+        }
+
+        //插入文章
+<span class="fc" id="L79">        boolean flg=remoteDBUnit.insertArticle(article.getUserID(),article.getContent(),article.getImageURL());</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if(flg==false) {</span>
+<span class="fc" id="L81">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L82">            msg.setErrorType(&quot;insert_error&quot;);</span>
+<span class="fc" id="L83">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L86">        msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L87">        msg.setErrorType(&quot;empty&quot;);</span>
+<span class="fc" id="L88">        return JSONObject.fromObject(msg);</span>
+    }
+
+
+    @RequestMapping(value = &quot;/refresh&quot;)
+    @ResponseBody
+    public JSONObject refresh(@RequestBody String json) {
+//        RemoteDBUnit remoteDBUnit = new RemoteDBUnit();
+
+<span class="fc" id="L97">        JSONObject object = JSONObject.fromObject(json);</span>
+<span class="fc" id="L98">        ArticleMessage msg = new ArticleMessage();</span>
+        ArrayList&lt;Article&gt; articles;
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if(check(object,&quot;show&quot;)==false){</span>
+<span class="fc" id="L102">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L103">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L104">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        if(check(object,&quot;articleID&quot;)==false){</span>
+<span class="fc" id="L108">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L109">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L110">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L113">        int num = object.getInt(&quot;show&quot;);</span>
+<span class="fc" id="L114">        int front = object.getInt(&quot;articleID&quot;);</span>
+
+
+        //search for recent articles
+<span class="fc" id="L118">        articles=remoteDBUnit.currentArticles(front,num);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if(articles == null){</span>
+<span class="fc" id="L120">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L121">            msg.setErrorType(&quot;query_error&quot;);</span>
+<span class="fc" id="L122">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L125">        msg.setArticles(articles);</span>
+<span class="fc" id="L126">        msg.setNum(articles.size()+&quot;&quot;);</span>
+<span class="fc" id="L127">        msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L128">        msg.setErrorType(&quot;empty&quot;);</span>
+
+<span class="fc" id="L130">        return JSONObject.fromObject(msg);</span>
+    }
+
+
+    @RequestMapping(value = &quot;/more&quot;)
+    @ResponseBody
+    public JSONObject more(@RequestBody String json){
+//        RemoteDBUnit remoteDBUnit = new RemoteDBUnit();
+
+<span class="fc" id="L139">        JSONObject object = JSONObject.fromObject(json);</span>
+<span class="fc" id="L140">        ArticleMessage msg = new ArticleMessage();</span>
+        ArrayList&lt;Article&gt; articles;
+
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if(check(object,&quot;show&quot;)==false){</span>
+<span class="fc" id="L144">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L145">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L146">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if(check(object,&quot;articleID&quot;)==false){</span>
+<span class="fc" id="L150">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L151">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L152">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L155">        int num = object.getInt(&quot;show&quot;);</span>
+<span class="fc" id="L156">        int tail = object.getInt(&quot;articleID&quot;);</span>
+
+        //search for previous articles
+<span class="fc" id="L159">        articles=remoteDBUnit.previousArticles(tail,num);</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        if(articles == null){</span>
+<span class="fc" id="L161">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L162">            msg.setErrorType(&quot;query_error&quot;);</span>
+<span class="fc" id="L163">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L166">        msg.setArticles(articles);</span>
+<span class="fc" id="L167">        msg.setNum(articles.size()+&quot;&quot;);</span>
+<span class="fc" id="L168">        msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L169">        msg.setErrorType(&quot;empty&quot;);</span>
+
+<span class="fc" id="L171">        return JSONObject.fromObject(msg);</span>
+    }
+
+
+    @RequestMapping(value = &quot;/delete&quot;)
+    @ResponseBody
+    public JSONObject delete(@RequestBody String json) {
+//        RemoteDBUnit remoteDBUnit = new RemoteDBUnit();
+
+<span class="fc" id="L180">        JSONObject object = JSONObject.fromObject(json);</span>
+<span class="fc" id="L181">        NormalMessage msg = new NormalMessage();</span>
+
+        //check input
+<span class="fc bfc" id="L184" title="All 2 branches covered.">        if(check(object,&quot;articleID&quot;)==false){</span>
+<span class="fc" id="L185">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L186">            msg.setErrorType(&quot;invalid_input&quot;);</span>
+<span class="fc" id="L187">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L190">        int del = object.getInt(&quot;articleID&quot;);</span>
+
+        //articleID should in db
+<span class="fc" id="L193">        boolean flag= remoteDBUnit.articleIDinArticle(del);</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">        if(flag==false) {</span>
+<span class="fc" id="L195">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L196">            msg.setErrorType(&quot;invalid_articleID&quot;);</span>
+<span class="fc" id="L197">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L200">        String imageUrl=remoteDBUnit.getImageUrl(del);</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        if(imageUrl==null){</span>
+<span class="fc" id="L202">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L203">            msg.setErrorType(&quot;query_error&quot;);</span>
+<span class="fc" id="L204">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L207">        boolean flg2 = remoteDBUnit.deleteArticle(del);</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        if(flg2==false){</span>
+<span class="fc" id="L209">            msg.setMessage(&quot;false&quot;);</span>
+<span class="fc" id="L210">            msg.setErrorType(&quot;query_error&quot;);</span>
+<span class="fc" id="L211">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc bfc" id="L214" title="All 2 branches covered.">        if(imageUrl.equals(&quot;empty&quot;)) {</span>
+<span class="fc" id="L215">            msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L216">            msg.setErrorType(&quot;empty&quot;);</span>
+<span class="fc" id="L217">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L220">        boolean flg3= fileOperator.deleteImage(imageUrl);</span>
+<span class="fc bfc" id="L221" title="All 2 branches covered.">        if(flg3==false) {</span>
+<span class="fc" id="L222">            msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L223">            msg.setErrorType(&quot;delete_error&quot;);</span>
+<span class="fc" id="L224">            return JSONObject.fromObject(msg);</span>
+        }
+
+<span class="fc" id="L227">        msg.setMessage(&quot;true&quot;);</span>
+<span class="fc" id="L228">        msg.setErrorType(&quot;empty&quot;);</span>
+<span class="fc" id="L229">        return JSONObject.fromObject(msg);</span>
+    }
+
+
+<span class="fc" id="L233">    public ArticleController() {</span>
+<span class="fc" id="L234">        remoteDBUnit = new RemoteDBUnit();</span>
+<span class="fc" id="L235">        fileOperator =new FileOperator();</span>
+<span class="fc" id="L236">    }</span>
+
+
+<span class="fc" id="L239">    public ArticleController(RemoteDBUnit remoteDBUnit,FileOperator fileOperator){</span>
+<span class="fc" id="L240">        this.remoteDBUnit=remoteDBUnit;</span>
+<span class="fc" id="L241">        this.fileOperator=fileOperator;</span>
+<span class="fc" id="L242">    }</span>
+
+
+
+    public boolean check(JSONObject json, String item){
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        if(!json.has(item))return false;</span>
+<span class="fc" id="L248">        String rs=json.getString(item);</span>
+<span class="pc bpc" id="L249" title="1 of 4 branches missed.">        if(rs==null||rs.equals(&quot;&quot;))return false;</span>
+<span class="fc" id="L250">        return true;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>com.example.controller (2019-1-6 23:40:08)</div></body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            $("#checkLF").click(function(event){
+                event.preventDefault();
+
+                var cUserID = ""+document.getElementById("userID").value;
+                console.log(cUserID);
+                var cPassword = ""+document.getElementById("password").value;
+                console.log(cPassword);
+                $.ajax({
+                    type : "POST",
+                    data : JSON.stringify({
+                        userID: cUserID,
+                        password: cPassword}),
+                    datatype : "json",
+                    contentType: 'application/json;charset=utf-8',
+                    url : "http://129.204.74.128:8080/timeline/user/login",
+                    success: function(data){
+                        console.log(data)
+                        if (data.message == "true") {
+                            alert("登陆成功！");
+                            sessionStorage.userID=cUserID;
+                            sessionStorage.nickname = data.nickname;
+                            window.location.href = "http://129.204.74.128:8080/timeline/views/index.html";
+                        } else {
+                            alert("用户名或密码错误，请重新输入。");
+                        }
+                    },
+                    error: function(xhr,status,err){
+                        alert(xhr.status);
+                        alert(xhr.readyState);
+                        alert("连接失败！ " + status + ": " + err.toString());
+                    }
+                })
+            });
+        })
+    </script>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="login.css"/>
+</head>
+<body>
+<div id="login">
+    <h1>Login</h1>
+    <form id="LoginForm" >
+        <p>
+            <input type="text" placeholder="用户名" id="userID" required autofocus />
+        </p>
+        <p>
+            <input type="password" placeholder="密码" id="password" required />
+        </p>
+        <button class="but"  id="checkLF">登录</button><a class="regi-but" href="register.html">注册</a>
+    </form>
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,1236 @@
+{
+	"id": "180b6c1d-9fa7-4bf1-a3e6-810a2b565c4b",
+	"name": "Timeline",
+	"allTests": [],
+	"timestamp": "2019-01-07T15:21:56.038Z",
+	"collection_id": "fe4183c4-7618-4516-84e3-01e2dffa049d",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "fe4183c4-7618-4516-84e3-01e2dffa049d",
+		"name": "Timeline",
+		"description": "",
+		"auth": null,
+		"events": null,
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"2b94df78-2e61-4d8d-b2ea-9a50d730e47d",
+			"2e937ad5-a6e3-4055-b0d9-f37bbd1fec72"
+		],
+		"owner": "6298183",
+		"permissions": {},
+		"favorite": true,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"value": null,
+			"key": "NaN",
+			"enabled": true
+		}
+	],
+	"results": [
+		{
+			"name": "article_push_01",
+			"id": "05202e62-23fb-48a2-a0f3-f847a89c19f2",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "UserID not in database can not push",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"UserID not in database can not push": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"249"
+			],
+			"allTests": [
+				{
+					"UserID not in database can not push": true
+				}
+			],
+			"time": "249",
+			"totalRequestTime": "249",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_push_02",
+			"id": "b000b79c-5c85-45ea-953b-72b60182224f",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can also push when image is null",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can also push when image is null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"167"
+			],
+			"allTests": [
+				{
+					"Article can also push when image is null": true
+				}
+			],
+			"time": "167",
+			"totalRequestTime": "167",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_push_03",
+			"id": "465182a4-ad96-4589-8b7b-53f534014cd5",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"156"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "156",
+			"totalRequestTime": "156",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_push_04",
+			"id": "b8ee69f7-2bd9-4cfc-b910-13d7b5cb3419",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"139"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "139",
+			"totalRequestTime": "139",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_refresh_01",
+			"id": "c4b72960-5d32-4e90-93d2-8c61131fe733",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"131"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "131",
+			"totalRequestTime": "131",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_refresh_02",
+			"id": "2c0c18df-42a1-4291-a78b-11c46b81ea3b",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"151"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "151",
+			"totalRequestTime": "151",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_refresh_03",
+			"id": "d3e75763-3001-4a2f-9aa8-fc17382bb676",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"140"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "140",
+			"totalRequestTime": "140",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_refresh_04",
+			"id": "ab76d66a-ff67-4832-8115-841ae693c1ac",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"136"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "136",
+			"totalRequestTime": "136",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_more_01",
+			"id": "345e63b2-cb40-43cd-bbc9-200b8e06f1c6",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"135"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "135",
+			"totalRequestTime": "135",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_more_02",
+			"id": "6eac09e4-c1c4-4ec5-9094-6bfc45ba2b18",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"141"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "141",
+			"totalRequestTime": "141",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_more_03",
+			"id": "39a83537-7d9e-4278-a635-7dd733672a16",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Article can push without image",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"149"
+			],
+			"allTests": [
+				{
+					"Article can push without image": true
+				}
+			],
+			"time": "149",
+			"totalRequestTime": "149",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_more_04",
+			"id": "16ad4ecc-a82e-411b-a9ad-87b79a78eeb1",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"138"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "138",
+			"totalRequestTime": "138",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_delete_01",
+			"id": "e7f6ce7f-6f8c-4950-8f72-e1aaba6560e0",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"156"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "156",
+			"totalRequestTime": "156",
+			"iterationResults": {}
+		},
+		{
+			"name": "article_delete_02",
+			"id": "2f7a1b42-b380-415c-ac12-a516bc3fb06b",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"149"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "149",
+			"totalRequestTime": "149",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_login_01",
+			"id": "e5d0ab10-9e02-4417-955e-81bf54d4713c",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "UserID not in DB return false",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"UserID not in DB return false": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"149"
+			],
+			"allTests": [
+				{
+					"UserID not in DB return false": true
+				}
+			],
+			"time": "149",
+			"totalRequestTime": "149",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_login_02",
+			"id": "7e7dca7c-988d-47de-a82b-4fdffe954599",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Match failed return false",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Match failed return false": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"160"
+			],
+			"allTests": [
+				{
+					"Match failed return false": true
+				}
+			],
+			"time": "160",
+			"totalRequestTime": "160",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_login_03",
+			"id": "023210be-8bf7-40f7-8e3d-af264e045ca3",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Password matches UserID",
+				"status": "pass",
+				"error": null,
+				"Return nickname": true
+			},
+			"testPassFailCounts": {
+				"Password matches UserID": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return nickname": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"129"
+			],
+			"allTests": [
+				{
+					"Password matches UserID": true,
+					"Return nickname": true
+				}
+			],
+			"time": "129",
+			"totalRequestTime": "129",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_login_04",
+			"id": "0bac325d-6326-449d-b76d-0391b0fedb69",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"147"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "147",
+			"totalRequestTime": "147",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_register_01",
+			"id": "d3427b29-9915-4113-ab5c-326069e5243a",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "UserID in database can not register",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"UserID in database can not register": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"158"
+			],
+			"allTests": [
+				{
+					"UserID in database can not register": true
+				}
+			],
+			"time": "158",
+			"totalRequestTime": "158",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_register_02",
+			"id": "b71cfbe5-f7a2-4d19-a13f-4b387568a492",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Distincr userID can register",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"Distincr userID can register": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"157"
+			],
+			"allTests": [
+				{
+					"Distincr userID can register": true
+				}
+			],
+			"time": "157",
+			"totalRequestTime": "157",
+			"iterationResults": {}
+		},
+		{
+			"name": "user_register_03",
+			"id": "4dc8a132-b445-45da-8633-345b5e59ade1",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "ArticleID not in database can not delete",
+				"status": "pass",
+				"error": null
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"80"
+			],
+			"allTests": [
+				{
+					"ArticleID not in database can not delete": true
+				}
+			],
+			"time": "80",
+			"totalRequestTime": "80",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 22,
+	"totalFail": 0,
+	"totalTime": 3117,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "article_push_01",
+			"id": "05202e62-23fb-48a2-a0f3-f847a89c19f2",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"UserID not in database can not push": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_push_02",
+			"id": "b000b79c-5c85-45ea-953b-72b60182224f",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can also push when image is null": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_push_03",
+			"id": "465182a4-ad96-4589-8b7b-53f534014cd5",
+			"url": "http://129.204.74.128:8080/timeline/article/push",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_push_04",
+			"id": "b8ee69f7-2bd9-4cfc-b910-13d7b5cb3419",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_refresh_01",
+			"id": "c4b72960-5d32-4e90-93d2-8c61131fe733",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_refresh_02",
+			"id": "2c0c18df-42a1-4291-a78b-11c46b81ea3b",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_refresh_03",
+			"id": "d3e75763-3001-4a2f-9aa8-fc17382bb676",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_refresh_04",
+			"id": "ab76d66a-ff67-4832-8115-841ae693c1ac",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_more_01",
+			"id": "345e63b2-cb40-43cd-bbc9-200b8e06f1c6",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_more_02",
+			"id": "6eac09e4-c1c4-4ec5-9094-6bfc45ba2b18",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_more_03",
+			"id": "39a83537-7d9e-4278-a635-7dd733672a16",
+			"url": "http://129.204.74.128:8080/timeline/article/refresh",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Article can push without image": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_more_04",
+			"id": "16ad4ecc-a82e-411b-a9ad-87b79a78eeb1",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_delete_01",
+			"id": "e7f6ce7f-6f8c-4950-8f72-e1aaba6560e0",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "article_delete_02",
+			"id": "2f7a1b42-b380-415c-ac12-a516bc3fb06b",
+			"url": "http://129.204.74.128:8080/timeline/article/delete",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_login_01",
+			"id": "e5d0ab10-9e02-4417-955e-81bf54d4713c",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"UserID not in DB return false": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_login_02",
+			"id": "7e7dca7c-988d-47de-a82b-4fdffe954599",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Match failed return false": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_login_03",
+			"id": "023210be-8bf7-40f7-8e3d-af264e045ca3",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Password matches UserID": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return nickname": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_login_04",
+			"id": "0bac325d-6326-449d-b76d-0391b0fedb69",
+			"url": "http://129.204.74.128:8080/timeline/user/login",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_register_01",
+			"id": "d3427b29-9915-4113-ab5c-326069e5243a",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"UserID in database can not register": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_register_02",
+			"id": "b71cfbe5-f7a2-4d19-a13f-4b387568a492",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Distincr userID can register": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "user_register_03",
+			"id": "4dc8a132-b445-45da-8633-345b5e59ade1",
+			"url": "http://129.204.74.128:8080/timeline/user/register",
+			"time": "2019-01-07T15:21:56.038Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"ArticleID not in database can not delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
